@@ -286,7 +286,7 @@ Resources:
 
 #####################AutoScalingGroup#####################
   NginxAutoScaleGroup:
-    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Type: AWS::AutoScaling::AutoScalingGroup
     Properties:
       DesiredCapacity: '3'
       MinSize: '3'
