@@ -417,4 +417,4 @@ Outputs:
   ApplicationLoadBalancerDNSName:
     Description: The DNSName of the Application Load Balancer
     Value: !GetAtt BackupLoadBalancer.DNSName
-    Condition: CreateProdResources                
+#    Condition: CreateProdResources                
