@@ -345,10 +345,10 @@ Resources:
             Fn::Sub: |
 
               #!/bin/bash
-              exec > /var/log/user-data.log 2>&1
-              set -x
+              sudo exec > /var/log/user-data.log 2>&1
+              sudo set -x
 
-              /opt/aws/bin/cfn-init -v --stack ${AWS::StackName} --resource NginxLaunchTemplate --region ${AWS::Region}
+              sudo /opt/aws/bin/cfn-init -v --stack ${AWS::StackName} --resource NginxLaunchTemplate --region ${AWS::Region}
 
         IamInstanceProfile:
           Name: !Ref InstanceProfile
