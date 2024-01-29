@@ -350,10 +350,6 @@ Resources:
 
               /opt/aws/bin/cfn-init -v --stack ${AWS::StackName} --resource NginxLaunchTemplate --region ${AWS::Region}
 
-              ###!/bin/bash
-
-              /opt/aws/bin/cfn-init -v --stack ${AWS::StackName} --resource NginxLaunchTemplate --region ${AWS::Region}
-
         IamInstanceProfile:
           Name: !Ref InstanceProfile
         SecurityGroupIds:
