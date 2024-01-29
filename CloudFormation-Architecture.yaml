@@ -345,8 +345,6 @@ Resources:
             Fn::Sub: |
 
               #!/bin/bash
-              exec > /var/log/user-data.log 2>&1
-              set -x
 
               /opt/aws/bin/cfn-init -v --stack ${AWS::StackName} --resource NginxLaunchTemplate --region ${AWS::Region}
 
@@ -354,66 +352,6 @@ Resources:
           Name: !Ref InstanceProfile
         SecurityGroupIds:
           - !Ref NginxSecurityGroup
-    Metadata:
-      AWS::CloudFormation::Init:
-        configSets:
-          default:
-          - setup
-          - start
-        setup:
-          commands:
-            install_nginx:
-              command: "amazon-linux-extras install -y nginx1"
-          files:
-            "/var/www/html/index.html":
-              mode: '000644'
-              owner: root
-              group: root
-              content: |
-
-                <html>
-
-                  <body>
-
-                    <title>Welcome to my Web Page</title>
-
-                    <h1>This is a Dev environment created with ClouldFormation in AWS!</h1>
-
-                  </body>
-
-                </html>
-
-            "/etc/nginx/conf.d/training.conf":
-
-              mode: '000644'
-              owner: root
-              group: root
-              content: |
-
-                server {
-
-                    listen 8081 default_server;
-
-                    
-
-                    root /var/www/html/;
-
-
-
-                    location / {
-
-                    }
-
-
-
-                }
-
-        start:
-          services:
-            sysvinit:
-              nginx:
-                enabled: true
-                ensureRunning: true
 
 Outputs:
   ApplicationLoadBalancerDNSName:
