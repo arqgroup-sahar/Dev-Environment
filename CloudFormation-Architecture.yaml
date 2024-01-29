@@ -345,6 +345,12 @@ Resources:
             Fn::Sub: |
 
               #!/bin/bash
+              exec > /var/log/user-data.log 2>&1
+              set -x
+
+              /opt/aws/bin/cfn-init -v --stack ${AWS::StackName} --resource NginxLaunchTemplate --region ${AWS::Region}
+
+              ###!/bin/bash
 
               /opt/aws/bin/cfn-init -v --stack ${AWS::StackName} --resource NginxLaunchTemplate --region ${AWS::Region}
 
